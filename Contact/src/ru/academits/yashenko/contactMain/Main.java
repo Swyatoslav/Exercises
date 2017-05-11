@@ -26,6 +26,5 @@ public class Main {
         System.out.println("Карточка 2");
         System.out.printf("Имя: %s%nФамилия: %s%nТелефон: %s%n",
                 contact2.getSurname(), contact2.getName(), contact2.getPhoneNumber());
-
     }
 }
