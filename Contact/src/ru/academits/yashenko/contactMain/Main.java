@@ -1,4 +1,6 @@
-package ru.academits.yashenko.contact;
+package ru.academits.yashenko.contactMain;
+
+import ru.academits.yashenko.contact.Contact;
 
 import java.util.Scanner;
 

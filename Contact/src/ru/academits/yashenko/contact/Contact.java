@@ -1,40 +1,40 @@
 package ru.academits.yashenko.contact;
 
-class Contact {
+public class Contact {
     private String surname;
     private String name;
     private String phoneNumber;
 
-    Contact() {
+    public Contact() {
     }
 
-    Contact(String surname, String name, String phoneNumber) {
+    public Contact(String surname, String name, String phoneNumber) {
         this.surname = surname;
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
 
-    String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
-    void setSurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }
