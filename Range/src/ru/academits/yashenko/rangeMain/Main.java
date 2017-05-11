@@ -1,4 +1,6 @@
-package ru.academits.yashenko.range;
+package ru.academits.yashenko.rangeMain;
+
+import ru.academits.yashenko.range.Range;
 
 import java.util.Scanner;
 
@@ -31,12 +33,14 @@ public class Main {
         System.out.println(range2.isInside(number) ? "Число входит в диапазон" : "Число не входит в диапазон");
         System.out.println();
 
-        Range range3 = Range.getCrossingRange(range1, range2);
+        Range range3 =  new Range().getCrossingRange(range1, range2);
         System.out.println("Интервал-пересечение");
         if (range3 == null) {
             System.out.println("Интервалы не пересекаются");
         } else {
             System.out.printf("From: %.2f%nTo: %.2f", range3.getFrom(), range3.getTo());
         }
+
+        // Range[] rangesArray = new Range
     }
 }
