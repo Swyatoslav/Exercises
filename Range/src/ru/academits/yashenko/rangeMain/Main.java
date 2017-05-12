@@ -9,13 +9,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         Range range1 = new Range(1.45, 5.74);
-        Range range2 = new Range();
 
         System.out.print("Введите начальную координату: ");
-        range2.setFrom(scanner.nextDouble());
+        double from = scanner.nextDouble();
         System.out.print("Введите конечную координату: ");
-        range2.setTo(scanner.nextDouble());
-        System.out.println();
+        double to = scanner.nextDouble();
+        Range range2 = new Range(from, to);
 
         System.out.println("Первый диапазон");
         System.out.printf("Длина: %.2f", range1.getRangeLength());
@@ -33,7 +32,8 @@ public class Main {
         System.out.println(range2.isInside(number) ? "Число входит в диапазон" : "Число не входит в диапазон");
         System.out.println();
 
-        Range range3 =  new Range().getCrossingRange(range1, range2);
+        Range range3 = new Range(0, 0);
+        range3 = range3.getCrossingRange(range1, range2);
         System.out.println("Интервал-пересечение");
         if (range3 == null) {
             System.out.println("Интервалы не пересекаются");
@@ -41,6 +41,8 @@ public class Main {
             System.out.printf("From: %.2f%nTo: %.2f", range3.getFrom(), range3.getTo());
         }
 
-        // Range[] rangesArray = new Range
+        Range[] range4;
+        Range[] range5;
+
     }
 }
