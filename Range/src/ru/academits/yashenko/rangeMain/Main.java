@@ -17,7 +17,7 @@ public class Main {
         Range range2 = new Range(from, to);
 
         System.out.println("Первый диапазон");
-        System.out.printf("Длина: %.2f", range1.getRangeLength());
+        System.out.printf("Длина: %.2f", range1.getLength());
         System.out.println();
         System.out.print("Введите любое число: ");
         double number = scanner.nextDouble();
@@ -25,7 +25,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Второй диапазон");
-        System.out.printf("Длина: %.2f", range2.getRangeLength());
+        System.out.printf("Длина: %.2f", range2.getLength());
         System.out.println();
         System.out.print("Введите любое число: ");
         number = scanner.nextDouble();
@@ -33,7 +33,7 @@ public class Main {
         System.out.println();
 
         Range range3 = new Range(0, 0);
-        range3 = range3.getCrossingRange(range1, range2);
+        range3 = range3.getCrossingRange(range2);
         System.out.println("Интервал-пересечение");
         if (range3 == null) {
             System.out.println("Интервалы не пересекаются");
@@ -41,8 +41,7 @@ public class Main {
             System.out.printf("From: %.2f%nTo: %.2f", range3.getFrom(), range3.getTo());
         }
 
-        Range[] range4;
-        Range[] range5;
-
+        Range[] range4; // Метод getCombinedRanges
+        Range[] range5; // Метод getDifferenceOfRanges
     }
 }
