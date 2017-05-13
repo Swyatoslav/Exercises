@@ -59,7 +59,6 @@ public class Main {
         System.out.println("Разность интервалов");
         if (ranges.length == 0) {
             System.out.println("Разность интервалов равна нулю");
-
         } else {
             for (Range range : ranges) {
                 System.out.printf("Интервал: From %.2f To %.2f", range.getFrom(), range.getTo());
