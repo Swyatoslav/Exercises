@@ -44,11 +44,10 @@ public class Main {
         } else {
             System.out.printf("From: %.2f%nTo: %.2f", range3.getFrom(), range3.getTo());
         }
+        System.out.println();
 
         Range[] ranges = range1.getCombinedRanges(range2);
-        System.out.println();
         System.out.println("Сумма интервалов");
-
         for (Range range : ranges) {
             System.out.printf("Интервал: From %.2f To %.2f", range.getFrom(), range.getTo());
             System.out.println();
