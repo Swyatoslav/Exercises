@@ -9,10 +9,7 @@ public class Range {
         this.to = to;
     }
 
-    public Range() {
-    }
-
-    public double getRangeLength() {
+    public double getLength() {
         return to - from;
     }
 
@@ -20,73 +17,47 @@ public class Range {
         return number >= from && number <= to;
     }
 
-    public void setFrom(double from) {
-        this.from = from;
-    }
-
     public double getFrom() {
         return from;
-    }
-
-    public void setTo(double to) {
-        this.to = to;
     }
 
     public double getTo() {
         return to;
     }
 
-    public Range getCrossingRange(Range first, Range second) {
-        if (!first.isInside(second.from) && !first.isInside(second.to)) {
+    public Range getCrossingRange(Range second) {
+        if (!this.isInside(second.from) && !this.isInside(second.to)) {
             return null;
-        } else if (first.isInside(second.from) && !first.isInside(second.to)) {
-            return new Range(second.from, first.to);
-        } else if (!first.isInside(second.from) && first.isInside(second.to)) {
-            return new Range(first.from, second.to);
+        } else if (this.isInside(second.from) && !this.isInside(second.to)) {
+            return new Range(second.from, this.to);
+        } else if (!this.isInside(second.from) && this.isInside(second.to)) {
+            return new Range(this.from, second.to);
         } else {
             return new Range(second.from, second.to);
         }
     }
 
-    public Range[] getCombinedRanges(Range first, Range second) {
-        Range[] rangesArray;
-        if (!first.isInside(second.from) && !first.isInside(second.to)) {
-            rangesArray = new Range[2];
-            rangesArray[0] = new Range(first.from, first.to);
-            rangesArray[1] = new Range(second.from, second.to);
-            return rangesArray;
-        } else if (first.isInside(second.from) && !first.isInside(second.to)) {
-            rangesArray = new Range[1];
-            rangesArray[0] = new Range(first.from, second.to);
-            return rangesArray;
-        } else if (!first.isInside(second.from) && first.isInside(second.to)) {
-            rangesArray = new Range[1];
-            rangesArray[0] = new Range(second.from, first.to);
-            return rangesArray;
+    public Range[] getCombinedRanges(Range second) {
+        if (!this.isInside(second.from) && !this.isInside(second.to)) {
+            return new Range[]{new Range(this.from, this.to), new Range(second.from, second.to)};
+        } else if (this.isInside(second.from) && !this.isInside(second.to)) {
+            return new Range[]{new Range(this.from, second.to)};
+        } else if (!this.isInside(second.from) && this.isInside(second.to)) {
+            return new Range[]{new Range(second.from, this.to)};
         } else {
-            rangesArray = new Range[1];
-            rangesArray[0] = new Range(first.from, first.to);
-            return rangesArray;
+            return new Range[]{new Range(this.from, this.to)};
         }
     }
 
-    public Range[] getDifferenceOfRanges(Range first, Range second) {
-        Range[] rangesArray;
-        if (!first.isInside(second.from) && !first.isInside(second.to)) {
-            return null;
-        } else if (first.isInside(second.from) && !first.isInside(second.to)) {
-            rangesArray = new Range[1];
-            rangesArray[0] = new Range(first.from, second.from);
-            return rangesArray;
-        } else if (!first.isInside(second.from) && first.isInside(second.to)) {
-            rangesArray = new Range[1];
-            rangesArray[0] = new Range(second.to, first.to);
-            return rangesArray;
+    public Range[] getDifferenceOfRanges(Range second) {
+        if (!this.isInside(second.from) && !this.isInside(second.to)) {
+            return new Range[0];
+        } else if (this.isInside(second.from) && !this.isInside(second.to)) {
+            return new Range[]{new Range(this.from, second.from)};
+        } else if (!this.isInside(second.from) && this.isInside(second.to)) {
+            return new Range[]{new Range(second.to, this.to)};
         } else {
-            rangesArray = new Range[2];
-            rangesArray[0] = new Range(first.from, second.from);
-            rangesArray[1] = new Range(second.to, first.to);
-            return rangesArray;
+            return new Range[]{new Range(this.from, second.from), new Range(second.to, this.to)};
         }
     }
 }
