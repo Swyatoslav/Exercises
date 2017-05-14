@@ -36,8 +36,8 @@ public class Main {
                 "Число не входит во второй диапазон");
         System.out.println();
 
-        Range range3 = new Range(0, 0);
-        range3 = range3.getCrossingRange(range2);
+       Range range3;
+        range3 = range1.getCrossingRange(range2);
         System.out.println("Интервал-пересечение");
         if (range3 == null) {
             System.out.println("Интервалы не пересекаются");
