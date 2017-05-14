@@ -15,7 +15,7 @@ public class Main {
 
         System.out.print("Введите любое число: ");
         double number = scanner.nextDouble();
-        System.out.println(range1.isInside(number) ? "Число входит в первый  диапазон" :
+        System.out.println(range1.isNumberInside(number) ? "Число входит в первый  диапазон" :
                 "Число не входит в первый диапазон");
         System.out.println();
 
@@ -32,36 +32,54 @@ public class Main {
 
         System.out.print("Введите любое число: ");
         number = scanner.nextDouble();
-        System.out.println(range2.isInside(number) ? "Число входит во второй диапазон" :
+        System.out.println(range2.isNumberInside(number) ? "Число входит во второй диапазон" :
                 "Число не входит во второй диапазон");
         System.out.println();
 
-       Range range3;
-        range3 = range1.getCrossingRange(range2);
+        Range range3 = range1.getCrossingRange(range2);
         System.out.println("Интервал-пересечение");
         if (range3 == null) {
             System.out.println("Интервалы не пересекаются");
-        } else {
-            System.out.printf("From: %.2f%nTo: %.2f", range3.getFrom(), range3.getTo());
-        }
-        System.out.println();
-
-        Range[] ranges = range1.getCombinedRanges(range2);
-        System.out.println("Сумма интервалов");
-        for (Range range : ranges) {
-            System.out.printf("Интервал: From %.2f To %.2f", range.getFrom(), range.getTo());
             System.out.println();
-        }
-
-        ranges = range1.getDifferenceOfRanges(range2);
-        System.out.println();
-        System.out.println("Разность интервалов");
-        if (ranges.length == 0) {
+            System.out.println("Cумма интервалов");
+            if (range1.isEdgeEqual(range2)) {
+                Range range4 = range1.getCombinedRanges(range2);
+                System.out.printf("Интервал: From %.2f To %.2f", range4.getFrom(), range4.getTo());
+                System.out.println();
+                System.out.println();
+            } else {
+                System.out.printf("Первый интервал: From %.2f To %.2f%n",
+                        range1.getFrom(), range1.getTo());
+                System.out.printf("Второй интервал: From %.2f To %.2f", range2.getFrom(), range2.getTo());
+                System.out.println();
+                System.out.println();
+            }
             System.out.println("Разность интервалов равна нулю");
         } else {
-            for (Range range : ranges) {
-                System.out.printf("Интервал: From %.2f To %.2f", range.getFrom(), range.getTo());
+            System.out.printf("From: %.2f%nTo: %.2f", range3.getFrom(), range3.getTo());
+            System.out.println();
+            System.out.println();
+
+            range3 = range1.getCombinedRanges(range2);
+            System.out.println("Сумма интервалов");
+            System.out.printf("Интервал: From %.2f To %.2f", range3.getFrom(), range3.getTo());
+            System.out.println();
+
+            if (range1.isRangeInside(range2)) {
+                System.out.println("Разность интервалов");
+                System.out.printf("Первый интервал: From %.2f To %.2f%n", range1.getFrom(), range2.getFrom());
+                System.out.printf("Второй интервал: From %.2f To %.2f", range2.getTo(), range1.getTo());
+            } else if (range2.isRangeInside(range1)) {
+                System.out.println("Разность интервалов равна нулю");
+            } else {
+                range3 = range1.getDifferenceOfRanges(range2);
                 System.out.println();
+                System.out.println("Разность интервалов");
+                if (range3 == null) {
+                    System.out.println("Разность интервалов равна нулю");
+                } else {
+                    System.out.printf("Интервал: From %.2f To %.2f", range3.getFrom(), range3.getTo());
+                }
             }
         }
     }
