@@ -13,7 +13,7 @@ public class Range {
         return to - from;
     }
 
-    public boolean isInside(double number) {
+    public boolean isNumberInside(double number) {
         return number >= from && number <= to;
     }
 
@@ -25,41 +25,39 @@ public class Range {
         return to;
     }
 
-    public Range getCrossingRange(Range second) {
-        if (second.to <= this.from || second.from >= this.to) {
+    public int isEdgeEquals(Range range) {
+        if (this.from == range.to) {
+            return 1;
+        } else if (this.to == range.from) {
+            return 2;
+        } else {
+            return -1;
+        }
+    }
+
+    public Range getCrossingRange(Range range) {
+        if (range.to <= this.from || range.from >= this.to) {
             return null;
-        } else if (second.from > this.from && second.to < this.to) {
-            return new Range(second.from, second.to);
-        } else if ((second.from > this.from && second.from < this.to) && (second.to >= this.to)) {
-            return new Range(second.from, this.to);
-        } else if ((second.from < this.from) && (second.to > this.from && second.to < this.to)) {
-            return new Range(this.from, second.to);
         } else {
-            return new Range(this.from, this.to);
+            return new Range(Math.max(this.from, range.from), Math.min(this.to, range.to));
         }
     }
 
-    public Range[] getCombinedRanges(Range second) {
-        if (second.to < this.from || second.from > this.to) {
-            return new Range[]{new Range(second.from, second.to), new Range(this.from, this.to)};
-        } else if (second.from > this.from && second.to < this.to) {
-            return new Range[]{new Range(this.from, this.to)};
-        } else if ((second.from > this.from && second.from <= this.to) && (second.to > this.to)) {
-            return new Range[]{new Range(this.from, second.to)};
-        } else if ((second.from < this.from) && (second.to >= this.from && second.to < this.to)) {
-            return new Range[]{new Range(second.from, this.to)};
+    public Range[] getCombinedRanges(Range range) {
+        if (range.to < this.from || range.from > this.to) {
+            return new Range[]{new Range(range.from, range.to), new Range(this.from, this.to)};
         } else {
-            return new Range[]{new Range(second.from, second.to)};
+            return new Range[]{new Range(Math.min(this.from, range.from), Math.max(this.to, range.to))};
         }
     }
 
-    public Range[] getDifferenceOfRanges(Range second) {
-        if (second.from > this.from && second.to < this.to) {
-            return new Range[]{new Range(this.from, second.from), new Range(second.to, this.to)};
-        } else if ((second.from > this.from && second.from < this.to) && (second.to > this.to)) {
-            return new Range[]{new Range(this.from, second.from)};
-        } else if ((second.from < this.from) && (second.to > this.from && second.to < this.to)) {
-            return new Range[]{new Range(second.to, this.to)};
+    public Range[] getDifferenceOfRanges(Range range) {
+        if ((range.from > this.from && range.from < this.to) && (range.to >= this.to)) {
+            return new Range[]{new Range(this.from, range.from)};
+        } else if (range.from > this.from && range.to < this.to) {
+            return new Range[]{new Range(this.from, range.from), new Range(range.to, this.to)};
+        } else if (range.from <= this.from && (range.to > this.from && range.to < this.to)) {
+            return new Range[]{new Range(range.to, this.to)};
         } else {
             return new Range[0];
         }
