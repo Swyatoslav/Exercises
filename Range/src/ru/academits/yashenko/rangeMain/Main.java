@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Первый диапазон");
         System.out.printf("Длина первого диапазона: %.2f", range1.getLength());
         System.out.println();
-
+ 
         System.out.print("Введите любое число: ");
         double number = scanner.nextDouble();
         System.out.println(range1.isNumberInside(number) ? "Число входит в первый  диапазон" :
