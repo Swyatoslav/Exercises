@@ -36,17 +36,15 @@ public class Range {
     public Range[] getCombinedRanges(Range range) {
         if (range.to < this.from || range.from > this.to) {
             return new Range[]{new Range(range.from, range.to), new Range(this.from, this.to)};
-        } else if (this.from == range.to) {
-            return new Range[]{new Range(range.from, this.to)};
-        } else if (this.to == range.from) {
-            return new Range[]{new Range(this.from, range.to)};
         } else {
             return new Range[]{new Range(Math.min(this.from, range.from), Math.max(this.to, range.to))};
         }
     }
 
     public Range[] getDifferenceOfRanges(Range range) {
-        if ((range.from > this.from && range.from < this.to) && (range.to >= this.to)) {
+        if (range.to <= this.from || range.from >= this.to) {
+            return null;
+        } else if ((range.from > this.from && range.from < this.to) && (range.to >= this.to)) {
             return new Range[]{new Range(this.from, range.from)};
         } else if (range.from > this.from && range.to < this.to) {
             return new Range[]{new Range(this.from, range.from), new Range(range.to, this.to)};
