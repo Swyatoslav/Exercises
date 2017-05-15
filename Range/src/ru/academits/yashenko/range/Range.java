@@ -25,16 +25,6 @@ public class Range {
         return to;
     }
 
-    public int isEdgeEquals(Range range) {
-        if (this.from == range.to) {
-            return 1;
-        } else if (this.to == range.from) {
-            return 2;
-        } else {
-            return -1;
-        }
-    }
-
     public Range getCrossingRange(Range range) {
         if (range.to <= this.from || range.from >= this.to) {
             return null;
@@ -46,6 +36,10 @@ public class Range {
     public Range[] getCombinedRanges(Range range) {
         if (range.to < this.from || range.from > this.to) {
             return new Range[]{new Range(range.from, range.to), new Range(this.from, this.to)};
+        } else if (this.from == range.to) {
+            return new Range[]{new Range(range.from, this.to)};
+        } else if (this.to == range.from) {
+            return new Range[]{new Range(this.from, range.to)};
         } else {
             return new Range[]{new Range(Math.min(this.from, range.from), Math.max(this.to, range.to))};
         }

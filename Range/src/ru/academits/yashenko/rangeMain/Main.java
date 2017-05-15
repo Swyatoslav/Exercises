@@ -43,19 +43,12 @@ public class Main {
             System.out.println();
 
             System.out.println("Cумма интервалов");
-            number = range1.isEdgeEquals(range2);
-            if (number == 1) {
-                System.out.printf("Интервал: From %.2f To %.2f", range2.getFrom(), range1.getTo());
-            } else if (number == 2) {
-                System.out.printf("Интервал: From %.2f To %.2f", range1.getFrom(), range2.getTo());
-            } else {
-                Range[] ranges = range1.getCombinedRanges(range2);
-                for (Range range : ranges) {
-                    System.out.printf("Интервал: %.2f, %.2f%n", range.getFrom(), range.getTo());
-                }
+            Range[] ranges = range1.getCombinedRanges(range2);
+            for (Range range : ranges) {
+                System.out.printf("Интервал: %.2f, %.2f%n", range.getFrom(), range.getTo());
             }
-
             System.out.println();
+
             System.out.println("Разность интервалов равна нулю");
         } else {
             System.out.printf("From: %.2f%nTo: %.2f", range3.getFrom(), range3.getTo());
