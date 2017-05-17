@@ -43,12 +43,12 @@ public class Range {
 
     public Range[] getDifferenceOfRanges(Range range) {
         if (range.to <= this.from || range.from >= this.to) {
-            return null;
-        } else if ((range.from > this.from && range.from < this.to) && (range.to >= this.to)) {
+            return new Range[]{new Range(this.from, this.to)};
+        } else if (range.from > this.from && range.to >= this.to) {
             return new Range[]{new Range(this.from, range.from)};
-        } else if (range.from > this.from && range.to < this.to) {
+        } else if (range.from > this.from) {
             return new Range[]{new Range(this.from, range.from), new Range(range.to, this.to)};
-        } else if (range.from <= this.from && (range.to > this.from && range.to < this.to)) {
+        } else if (range.to < this.to) {
             return new Range[]{new Range(range.to, this.to)};
         } else {
             return new Range[0];

@@ -35,7 +35,7 @@ public class Main {
         System.out.println(range2.isNumberInside(number) ? "Число входит во второй диапазон" :
                 "Число не входит во второй диапазон");
         System.out.println();
- 
+
         Range range3 = range1.getCrossingRange(range2);
         System.out.println("Интервал-пересечение");
         if (range3 == null) {
@@ -58,9 +58,7 @@ public class Main {
         System.out.println("Разность интервалов");
         ranges = range1.getDifferenceOfRanges(range2);
 
-        if (ranges == null) {
-            System.out.println("Интервалы не пересекаются");
-        } else if (ranges.length == 0) {
+        if (ranges.length == 0) {
             System.out.println("Разность интервалов равна нулю");
         } else {
             for (Range range : ranges) {
